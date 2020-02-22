@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Student Details";
+    var Image = "~/Images/" + (Model.Student.Image ?? "");
 }
 
 <section id="breadcrumb">
@@ -54,7 +55,7 @@
                             </div>
 
                             <div class="card-body text-center">
-                                <img class="card-img-top" src="~/coding.jpg" asp-append-version="true" />
+                                <img class="card-img-top" style="width: auto; height: 500px;" src="@Image" asp-append-version="true" />
 
                                 <h4>Student Id : @Model.Student.Id</h4>
                                 <h4>MaritalStatus : @Model.Student.MaritalStatus.Value</h4>

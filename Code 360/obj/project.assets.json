@@ -4952,11 +4952,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SURFACE\\Desktop\\Project\\Code 360\\Code 360\\Code 360.csproj",
+      "projectUniqueName": "C:\\Users\\SURFACE\\Desktop\\Project\\Code_360_Student_Portal\\Code 360\\Code 360.csproj",
       "projectName": "Code 360",
-      "projectPath": "C:\\Users\\SURFACE\\Desktop\\Project\\Code 360\\Code 360\\Code 360.csproj",
+      "projectPath": "C:\\Users\\SURFACE\\Desktop\\Project\\Code_360_Student_Portal\\Code 360\\Code 360.csproj",
       "packagesPath": "C:\\Users\\SURFACE\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SURFACE\\Desktop\\Project\\Code 360\\Code 360\\obj\\",
+      "outputPath": "C:\\Users\\SURFACE\\Desktop\\Project\\Code_360_Student_Portal\\Code 360\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

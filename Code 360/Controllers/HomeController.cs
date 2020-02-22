@@ -1,8 +1,10 @@
 ﻿using Code_360.Models;
 using Code_360.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,14 +12,18 @@ namespace Code_360.Controllers
 {
     public class HomeController : Controller
     {
-        private IStudentRepository _studentRepository;
+        private readonly IStudentRepository _studentRepository;
+        private readonly IHostingEnvironment hostingEnvironment;
 
-        public HomeController(IStudentRepository studentRepository)
+        public HomeController(IStudentRepository studentRepository, IHostingEnvironment hostingEnvironment)
         {
             _studentRepository = studentRepository;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
         [Route("")]
+        [Route("/home")]
+        [Route("/index")]
         public ViewResult Index()
         {
             var model = _studentRepository.GetAllStudent();
@@ -41,10 +47,39 @@ namespace Code_360.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Student student)
+        public IActionResult Create(StudentViewModel studentModel)
         {
-            Student newStund = _studentRepository.AddStudent(student);
-            return RedirectToAction("index", new { Id = newStund.Id });
+            if (ModelState.IsValid)
+            {
+                string fileName = null;
+                if (studentModel != null)
+                {
+                    string UploadFolder = Path.Combine(hostingEnvironment.WebRootPath, "Images");
+                    fileName = Guid.NewGuid().ToString() + "_" + studentModel.Photo.FileName;
+                    string filePath= Path.Combine(UploadFolder, fileName);
+                    studentModel.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+                Student newStudent = new Student
+                {
+                    Name = studentModel.Name,
+                    Gender = studentModel.Gender,
+                    DateOfBirth = studentModel.DateOfBirth,
+                    Address = studentModel.Address,
+                    Nationality = studentModel.Nationality,
+                    Phone = studentModel.Phone,
+                    Image = fileName,
+                    MaritalStatus = studentModel.MaritalStatus,
+                    AddmissionType = studentModel.AddmissionType,
+                    NextOfKinName = studentModel.NextOfKinName,
+                    NextOfKinEmail = studentModel.NextOfKinEmail,
+                    NextOfKinPhone = studentModel.NextOfKinPhone,
+                    NextOfKinDocumentUrl = studentModel.NextOfKinDocumentUrl,
+                    BVN = studentModel.BVN
+                };
+                _studentRepository.AddStudent(newStudent);
+                return RedirectToAction("index", new { Id = newStudent.Id });
+            }
+            return View();
         }
 
         [Route("Delete/{id}")]
