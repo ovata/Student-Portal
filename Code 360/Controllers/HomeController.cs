@@ -67,7 +67,7 @@ namespace Code_360.Controllers
                     Address = studentModel.Address,
                     Nationality = studentModel.Nationality,
                     Phone = studentModel.Phone,
-                    Image = fileName,
+                    Photo = fileName,
                     MaritalStatus = studentModel.MaritalStatus,
                     AddmissionType = studentModel.AddmissionType,
                     NextOfKinName = studentModel.NextOfKinName,
@@ -88,15 +88,27 @@ namespace Code_360.Controllers
             _studentRepository.RemoveStudent(id);
             return RedirectToAction("Index");
         }
-        
-        [Route("Update")]
-        public ViewResult UpdateStudent(int id)
+
+        [HttpGet]
+        public ViewResult Edit(int id)
         {
             Student student = _studentRepository.GetStudent(id);
-            UpdateStudent update = new UpdateStudent()
+            UpdateStudent update = new UpdateStudent
             {
+                Id = student.Id,
                 Name = student.Name,
-                Gender = student.Gender
+                Gender = student.Gender,
+                DateOfBirth = student.DateOfBirth,
+                Address = student.Address,
+                Nationality = student.Nationality,
+                ExistingPhotoPath = student.Photo,
+                MaritalStatus = student.MaritalStatus,
+                AddmissionType = student.AddmissionType,
+                NextOfKinName = student.NextOfKinName,
+                NextOfKinEmail = student.NextOfKinEmail,
+                NextOfKinPhone = student.NextOfKinPhone,
+                NextOfKinDocumentUrl = student.NextOfKinDocumentUrl,
+                BVN = student.BVN
             };
             return View(update);
         }

@@ -42,9 +42,6 @@ namespace Code_360.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("MaritalStatus")
                         .HasColumnType("int");
 
@@ -73,6 +70,9 @@ namespace Code_360.Migrations
 
                     b.Property<string>("Phone")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Photo")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

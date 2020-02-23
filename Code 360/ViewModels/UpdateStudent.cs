@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Code_360.ViewModels
 {
-    public class UpdateStudent
+    public class UpdateStudent : StudentViewModel
     {
-        public string Name { get; set; }
-        public gender? Gender { get; set; }
+        public int Id { get; set; }
+        public string ExistingPhotoPath { get; set; }
     }
 }

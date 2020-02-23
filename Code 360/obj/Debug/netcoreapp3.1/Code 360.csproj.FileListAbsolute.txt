@@ -129,3 +129,4 @@ C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netc
 C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.csproj.CopyComplete
 C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.dll
 C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.pdb
+C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Razor\Views\Home\Edit.cshtml.g.cs

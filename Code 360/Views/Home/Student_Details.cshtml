@@ -3,13 +3,13 @@
 
 @{
     ViewBag.Title = "Student Details";
-    var Image = "~/Images/" + (Model.Student.Image ?? "");
+    var Image = "~/Images/" + (Model.Student.Photo ?? "coding.jpg");
 }
 
 <section id="breadcrumb">
     <div class="container">
         <ol class="breadcrumb">
-            <li class="active">Dashboard | Student</li>
+            <li class="active">Dashboard | Details | @Model.Student.Name </li>
         </ol>
     </div>
 </section>
@@ -63,9 +63,9 @@
 
                             </div>
                             <div class="card-footer text-center">
-                                <a asp-controller="home" asp-action="index" class="btn btn-primary">Back</a>
-                                <a asp-controller="home" asp-action="UpdateStudent" class="btn btn-primary">Edit</a>
-                                <a asp-controller="home" asp-action="Delete" class="btn btn-danger">Delete</a>
+                                <a asp-controller="home" asp-action="index" class="btn btn-primary glyphicon">Back</a>
+                                @*<a asp-controller="home" asp-action="edit" class="btn btn-primary">Edit</a>
+                                <a asp-controller="home" asp-action="Delete" class="btn btn-danger">Delete</a>*@
                             </div>
                         </div>
                     </div>
