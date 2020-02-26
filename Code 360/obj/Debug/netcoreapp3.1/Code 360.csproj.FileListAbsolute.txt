@@ -138,3 +138,5 @@ C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\bin\Debug\netc
 C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\bin\Debug\netcoreapp3.1\libman.json
+C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CreateRole.cshtml.g.cs

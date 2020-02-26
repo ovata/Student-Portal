@@ -1,5 +1,6 @@
 ﻿using Code_360.Models;
 using Code_360.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,12 +25,14 @@ namespace Code_360.Controllers
         [Route("")]
         [Route("/home")]
         [Route("/index")]
+        [AllowAnonymous]
         public ViewResult Index()
         {
             var model = _studentRepository.GetAllStudent();
             return View(model);
         }
 
+        [AllowAnonymous]
         public ViewResult Student_Details(int? id)
         {
             Student student = _studentRepository.GetStudent(id.Value);

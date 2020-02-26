@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Code_360.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,7 @@ namespace Code_360.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register()
 
         {
@@ -29,6 +31,7 @@ namespace Code_360.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegistrationViewModel registrationViewModel)
         {
             if (ModelState.IsValid)
@@ -46,6 +49,7 @@ namespace Code_360.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
 
         {
@@ -53,7 +57,8 @@ namespace Code_360.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel loginViewModel)
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(LoginViewModel loginViewModel, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -62,10 +67,32 @@ namespace Code_360.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("index", "home");
+                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("index", "home");
+                    }
                 }
             }
             return View(loginViewModel);
+        }
+
+        [AcceptVerbs("Get","Post")]
+        [AllowAnonymous]
+        public async Task<IActionResult> IsEmailAvailable( string email)
+        {
+            var user = await userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json($"{email} is already taken");
+            }
         }
 
         [HttpPost]
