@@ -6,6 +6,7 @@ using Code_360.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +30,13 @@ namespace Code_360
             services.AddDbContextPool<StudentDbContext>(options => 
             options.UseSqlServer(_config.GetConnectionString("StudentDbConnection")));
 
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            })  .AddEntityFrameworkStores<StudentDbContext>();
+
             services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddScoped<IStudentRepository, StudentRepository>();
         }
@@ -43,6 +51,7 @@ namespace Code_360
 
             app.UseRouting();
             app.UseStaticFiles();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

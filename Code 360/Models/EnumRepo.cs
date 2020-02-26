@@ -5,23 +5,30 @@ using System.Threading.Tasks;
 
 namespace Code_360.Models
 {
-        public enum gender
+        public enum Gender
         {
             Male = 1,
             Female
         }
 
-        public enum addmissionType
+        public enum AddmissionType
         {
             Paid = 1,
             Income_Sharing
         }
 
-        public enum maritalStatus
+        public enum MaritalStatus
         {
             Single = 1,
             Married,
             Divorced,
             Complicated
+        }
+
+        public enum Level
+        {
+            Beginer = 1,
+            Intermidiate,
+            Expert
         }
 }

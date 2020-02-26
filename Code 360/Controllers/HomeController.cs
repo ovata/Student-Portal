@@ -32,11 +32,17 @@ namespace Code_360.Controllers
 
         public ViewResult Student_Details(int? id)
         {
+            Student student = _studentRepository.GetStudent(id.Value);
+            if (student == null)
+            {
+                Response.StatusCode = 404;
+                return View("StudentNotFound", id.Value);
+            }
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel
             {
-                Student = _studentRepository.GetStudent(id ?? 1),
+                Student = student,
                 PageTitle = "Student Details"
-            };
+            }; 
             return View(homeDetailsViewModel);
         }
 
@@ -51,14 +57,7 @@ namespace Code_360.Controllers
         {
             if (ModelState.IsValid)
             {
-                string fileName = null;
-                if (studentModel != null)
-                {
-                    string UploadFolder = Path.Combine(hostingEnvironment.WebRootPath, "Images");
-                    fileName = Guid.NewGuid().ToString() + "_" + studentModel.Photo.FileName;
-                    string filePath= Path.Combine(UploadFolder, fileName);
-                    studentModel.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
-                }
+                string fileName = ProcessUploadedFile(studentModel);
                 Student newStudent = new Student
                 {
                     Name = studentModel.Name,
@@ -101,6 +100,7 @@ namespace Code_360.Controllers
                 DateOfBirth = student.DateOfBirth,
                 Address = student.Address,
                 Nationality = student.Nationality,
+                Phone = student.Phone,
                 ExistingPhotoPath = student.Photo,
                 MaritalStatus = student.MaritalStatus,
                 AddmissionType = student.AddmissionType,
@@ -113,5 +113,55 @@ namespace Code_360.Controllers
             return View(update);
         }
 
+        [HttpPost]
+        public IActionResult Edit(UpdateStudent studentModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Student student = _studentRepository.GetStudent(studentModel.Id);
+                student.Name = studentModel.Name;
+                student.Gender = studentModel.Gender;
+                student.DateOfBirth = studentModel.DateOfBirth;
+                student.Nationality = studentModel.Nationality;
+                student.Phone = studentModel.Phone;
+                student.MaritalStatus = studentModel.MaritalStatus;
+                student.AddmissionType = studentModel.AddmissionType;
+                student.NextOfKinName = studentModel.NextOfKinName;
+                student.NextOfKinEmail = studentModel.NextOfKinEmail;
+                student.NextOfKinPhone = studentModel.NextOfKinPhone;
+                student.NextOfKinDocumentUrl = studentModel.NextOfKinDocumentUrl;
+                student.BVN = studentModel.BVN;
+                if (studentModel.Photo != null)
+                {
+                    if (studentModel.ExistingPhotoPath != null)
+                    {
+                        string filepath = Path.Combine(hostingEnvironment.WebRootPath, "images", studentModel.ExistingPhotoPath);
+                        System.IO.File.Delete(filepath);
+                    }
+                    student.Photo = ProcessUploadedFile(studentModel);
+                }
+
+                _studentRepository.UpdateStudent(student);
+                return RedirectToAction("index");
+            }
+            return View();
+        }
+
+        private string ProcessUploadedFile(StudentViewModel studentModel)
+        {
+            string fileName = null;
+            if (studentModel != null)
+            {
+                string UploadFolder = Path.Combine(hostingEnvironment.WebRootPath, "Images");
+                fileName = Guid.NewGuid().ToString() + "_" + studentModel.Photo.FileName;
+                string filePath = Path.Combine(UploadFolder, fileName);
+                using(var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    studentModel.Photo.CopyTo(fileStream);
+                }
+            }
+
+            return fileName;
+        }
     }
 }

@@ -13,34 +13,38 @@ namespace Code_360.ViewModels
         [Required]
         public string Name { get; set; }
         [Required]
-        public gender? Gender { get; set; }
-        [Display(Name = "DOB")]
+        public Gender? Gender { get; set; }
+        [Required]
+        [Display(Name ="D.O.B")]
+        [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
         [Required]
         public string Address { get; set; }
         [Required]
         public string Nationality { get; set; }
         [Required]
-        [Display(Name = "Phone Number")]
+        [Display(Name ="Phone Number")]
         public string Phone { get; set; }
         [Required]
-        [Display(Name = "Photo")]
         public IFormFile Photo { get; set; }
         [Required]
-        public maritalStatus? MaritalStatus { get; set; }
+        [Display(Name ="Marital Status")]
+        public MaritalStatus? MaritalStatus { get; set; }
         [Required]
-        [Display(Name = "Addmission Type")]
-        public addmissionType? AddmissionType { get; set; }
+        [Display(Name ="Addmission Type")]
+        public AddmissionType? AddmissionType { get; set; }
         [Required]
-        [Display(Name = "Name")]
+        [Display(Name ="Name")]
         public string NextOfKinName { get; set; }
         [Required]
+        [Display(Name ="Email")]
         [EmailAddress]
-        [Display(Name = "Email")]
         public string NextOfKinEmail { get; set; }
         [Required]
-        [Display(Name = "Phone Number")]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name ="Phone Number")]
         public string NextOfKinPhone { get; set; }
+        [Display(Name ="Document")]
         public string NextOfKinDocumentUrl { get; set; }
         [Required]
         public long BVN { get; set; }
