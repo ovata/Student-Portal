@@ -24,7 +24,7 @@ namespace Code_360.Models
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            
+            base.OnModelCreating(builder);
         }
     }
 }
