@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="well dash-box ">
-                                <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> 12,334</h2>
+                                <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> 134</h2>
                                 <h4>Visitors</h4>
                             </div>
                         </div>
@@ -87,29 +87,31 @@
                             <input type="search" class="form-control form-group" placeholder="Search" id="userinput" style="width:auto;" />
                             <a class="btn btn-primary" asp-action="create" asp-controller="home" style="height:35px;">Add New Student</a>
                         </div>
-                        <table class="table table-striped table-hover mt-3 table-responsive" id="datatable">
+                        <table class="table table-striped table-hover" style="margin-bottom: 0!important" id="datatable">
                             <tr>
                                 <th>Name</th>
                                 <th>Gender</th>
                                 <th>Nationality</th>
+                                <th>Addmission Type</th>
                                 <th>MaritalStatus</th>
                                 <th>Phone Number</th>
                                 <th></th>
                             </tr>
                             @foreach (var student in _student.GetAllStudent())
                             {
-                                <tr>
-                                    <td>@student.Name</td>
-                                    <td>@student.Gender</td>
-                                    <td>@student.Nationality</td>
-                                    <td>@student.MaritalStatus</td>
-                                    <td>@student.Phone</td>
-                                    <td class="text-right">
-                                        <a style="margin-right:30px" class="glyphicon glyphicon-eye-open" asp-controller="home" asp-action="Student_Details" asp-route-id="@student.Id"></a>
-                                        <a style="margin-right:30px" class="glyphicon glyphicon-pencil" asp-controller="home" asp-action="edit" asp-route-id="@student.Id"></a>
-                                        <a style="margin-right:30px" class="glyphicon glyphicon-trash text-danger" asp-action="delete" asp-controller="home" asp-route-id="@student.Id"></a>
-                                    </td>
-                                </tr>
+                        <tr>
+                            <td>@student.Name</td>
+                            <td>@student.Gender</td>
+                            <td>@student.Nationality</td>
+                            <td>@student.AddmissionType</td>
+                            <td>@student.MaritalStatus</td>
+                            <td>@student.Phone</td>
+                            <td class="text-right ml-3">
+                                <a style="margin-right:20px" class="glyphicon glyphicon-eye-open" asp-controller="home" asp-action="Student_Details" asp-route-id="@student.Id"></a>
+                                <a style="margin-right:20px" class="glyphicon glyphicon-pencil" asp-controller="home" asp-action="edit" asp-route-id="@student.Id"></a>
+                                <a style="margin-right:20px" class="glyphicon glyphicon-trash text-danger" asp-action="delete" asp-controller="home" asp-route-id="@student.Id"></a>
+                            </td>
+                        </tr>
                             }
                         </table>
                     </div>

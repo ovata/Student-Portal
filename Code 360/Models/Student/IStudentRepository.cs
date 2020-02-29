@@ -7,10 +7,10 @@ namespace Code_360.Models
 {
     public interface IStudentRepository
     {
-        Student GetStudent(int Id);
+        Student GetStudent(Guid Id);
         IEnumerable<Student> GetAllStudent();
         Student AddStudent(Student _student);
-        Student RemoveStudent(int Id);
+        Student RemoveStudent(Guid Id);
         Student UpdateStudent(Student studentUpdate);
     }
 }

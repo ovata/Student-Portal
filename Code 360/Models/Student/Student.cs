@@ -9,7 +9,7 @@ namespace Code_360.Models
     public class Student
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -38,5 +38,11 @@ namespace Code_360.Models
         public string NextOfKinDocumentUrl { get; set; }
         [Required]
         public long BVN { get; set; }
+
+        public Guid BatchId { get; set; }
+        public Batch.Batch Batch { get; set; }
+
+        public IList<Projects.Project> Projects { get; set; }
+
     }
 }

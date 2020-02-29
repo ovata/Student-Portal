@@ -9,7 +9,7 @@ namespace Code_360.Models.Batch
     public class Batch
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -23,5 +23,9 @@ namespace Code_360.Models.Batch
         [DataType(DataType.Date)]
         public string EndDate { get; set; }
 
+        public Guid ProgrammeId { get; set; }
+        public Programs.Programme Programme { get; set; }
+
+        public IList<Student> Students { get;set; }
     }
 }

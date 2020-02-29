@@ -5,9 +5,11 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <environment include="Development">
+        <link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
         <link href="~/CMS/css/bootstrap.min.css" rel="stylesheet" />
         <link href="~/CMS/css/style.css" rel="stylesheet" />
         @*<link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />*@
+        <link href="~/css/site.css" rel="stylesheet" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -24,7 +26,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-default ">
+    <nav class="navbar navbar-expand ">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -36,11 +38,11 @@
                 <a class="navbar-brand" href="#">Admin</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-controller="home" asp-action="index">Dashboard</a></li>
+                <ul class="navbar-nav text-white">
+                    <li><a asp-controller="home" asp-action="index" class="pr-2">Dashboard</a></li>
                     <li><a asp-action="student_details" asp-controller="home">Student</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right text-white">
                    @if (signInManager.IsSignedIn(User))
                     {
                         <li>
@@ -94,6 +96,7 @@
         <script src="~/js/jquery.min.js"></script>
         <script src="~/lib/jquery-validate/jquery.validate.js"></script>
         <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
         <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
 
     </div>

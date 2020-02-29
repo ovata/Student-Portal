@@ -33,7 +33,7 @@ namespace Code_360.Controllers
         }
 
         [AllowAnonymous]
-        public ViewResult Student_Details(int? id)
+        public ViewResult Student_Details(Guid? id)
         {
             Student student = _studentRepository.GetStudent(id.Value);
             if (student == null)
@@ -85,14 +85,14 @@ namespace Code_360.Controllers
         }
 
         [Route("Delete/{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
             _studentRepository.RemoveStudent(id);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public ViewResult Edit(int id)
+        public ViewResult Edit(Guid id)
         {
             Student student = _studentRepository.GetStudent(id);
             UpdateStudent update = new UpdateStudent

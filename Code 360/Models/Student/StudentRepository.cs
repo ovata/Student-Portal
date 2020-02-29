@@ -26,12 +26,12 @@ namespace Code_360.Models
             return studentDbContext.Students;
         }
 
-        public Student GetStudent(int Id)
+        public Student GetStudent(Guid Id)
         {
             return studentDbContext.Students.Find(Id);
         }
 
-        public Student RemoveStudent(int Id)
+        public Student RemoveStudent(Guid Id)
         {
             Student student = studentDbContext.Students.Find(Id);
             if (student != null)

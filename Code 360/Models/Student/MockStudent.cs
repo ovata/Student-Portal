@@ -16,7 +16,6 @@ namespace Code_360.Models
 
         public Student AddStudent(Student _student)
         {
-            _student.Id = _studentList.Max(r => r.Id) + 1;
             _studentList.Add(_student);
             return _student;
         }
@@ -26,14 +25,14 @@ namespace Code_360.Models
             return _studentList;
         }
 
-        public Student GetStudent(int Id)
+        public Student GetStudent(Guid Id)
         {
-            return _studentList.FirstOrDefault(w => w.Id == Id);
+            return _studentList.FirstOrDefault();
         }
 
-        public Student RemoveStudent(int Id)
+        public Student RemoveStudent(Guid Id)
         {
-            Student student = _studentList.FirstOrDefault(q => q.Id == Id);
+            Student student = _studentList.FirstOrDefault();
             if (student != null)
             {
                 _studentList.Remove(student);
