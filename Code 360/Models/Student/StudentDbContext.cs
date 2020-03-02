@@ -32,22 +32,51 @@ namespace Code_360.Models
         public DbSet<EmploymentDetails> EmploymentDetails { get; set; }
 
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(builder);
+            base.OnModelCreating(modelBuilder);
 
-            builder.Entity<StudentBatch>()
+            //Mant to many relationship for Student and Batch
+            modelBuilder.Entity<StudentBatch>()
                 .HasKey(sb => new { sb.StudentId, sb.BatchId });
 
-            builder.Entity<StudentBatch>()
+            modelBuilder.Entity<StudentBatch>()
                 .HasOne(sb => sb.Student)
                 .WithMany(s => s.StudentBatches)
                 .HasForeignKey(sb => sb.StudentId);
 
-            builder.Entity<StudentBatch>()
+            modelBuilder.Entity<StudentBatch>()
                 .HasOne(sb => sb.Batch)
                 .WithMany(b => b.StudentBatches)
                 .HasForeignKey(sb => sb.BatchId);
+
+            //Mant to many relationship for Student and Guarantor
+            modelBuilder.Entity<StudentGuarantor>()
+                .HasKey(sg => new { sg.StudentId, sg.GuarantorId });
+
+            modelBuilder.Entity<StudentGuarantor>()
+                .HasOne(ss => ss.Student)
+                .WithMany(s => s.StudentGuarantors)
+                .HasForeignKey(ss => ss.StudentId);
+
+            modelBuilder.Entity<StudentGuarantor>()
+                .HasOne(gg => gg.Guarantor)
+                .WithMany(g => g.StudentGuarantors)
+                .HasForeignKey(gg => gg.GuarantorId);
+
+            //Mant to many relationship for Program and Course
+            modelBuilder.Entity<ProgrammeCourse>()
+                .HasKey(pc => new { pc.CourseId, pc.ProgrammeId });
+
+            modelBuilder.Entity<ProgrammeCourse>()
+                .HasOne(pc => pc.Programme)
+                .WithMany(p => p.ProgrammeCourses)
+                .HasForeignKey(pc => pc.ProgrammeId);
+
+            modelBuilder.Entity<ProgrammeCourse>()
+                .HasOne(pc => pc.Course)
+                .WithMany(c => c.ProgrammeCourses)
+                .HasForeignKey(pc => pc.CourseId);
 
         }
     }

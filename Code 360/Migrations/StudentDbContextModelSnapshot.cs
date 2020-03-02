@@ -25,9 +25,8 @@ namespace Code_360.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("EndDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -40,11 +39,10 @@ namespace Code_360.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StartDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("StudentBatch")
+                    b.Property<string>("Supervisor")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -53,6 +51,37 @@ namespace Code_360.Migrations
                     b.HasIndex("ProgrammeId");
 
                     b.ToTable("Batches");
+                });
+
+            modelBuilder.Entity("Code_360.Models.Company", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactPerson")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("Code_360.Models.Course.Course", b =>
@@ -71,6 +100,130 @@ namespace Code_360.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("Code_360.Models.EmploymentDetails", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("EmploymentDetails");
+                });
+
+            modelBuilder.Entity("Code_360.Models.Guarantor.Guarantor", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nationality")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Occupation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Relationship")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Guarantors");
+                });
+
+            modelBuilder.Entity("Code_360.Models.Payment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("TotalAmount")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("Code_360.Models.PaymentDetails", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("AmountPaid")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("PaymentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PaymentId");
+
+                    b.ToTable("PaymentDetails");
+                });
+
+            modelBuilder.Entity("Code_360.Models.ProgrammeCourse", b =>
+                {
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProgrammeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("CourseId", "ProgrammeId");
+
+                    b.HasIndex("ProgrammeId");
+
+                    b.ToTable("ProgrammeCourses");
                 });
 
             modelBuilder.Entity("Code_360.Models.Programs.Programme", b =>
@@ -103,6 +256,7 @@ namespace Code_360.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProjectStatus")
@@ -121,6 +275,35 @@ namespace Code_360.Migrations
                     b.ToTable("Projects");
                 });
 
+            modelBuilder.Entity("Code_360.Models.Salary", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("EmploymentDetailsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("EmploymentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ExpectedPayDay")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("SalaryAmount")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmploymentDetailsId");
+
+                    b.ToTable("Salaries");
+                });
+
             modelBuilder.Entity("Code_360.Models.Student", b =>
                 {
                     b.Property<Guid>("Id")
@@ -136,9 +319,6 @@ namespace Code_360.Migrations
 
                     b.Property<long>("BVN")
                         .HasColumnType("bigint");
-
-                    b.Property<Guid?>("BatchId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
@@ -182,9 +362,37 @@ namespace Code_360.Migrations
 
                     b.HasKey("Id");
 
+                    b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("Code_360.Models.StudentBatch", b =>
+                {
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BatchId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("StudentId", "BatchId");
+
                     b.HasIndex("BatchId");
 
-                    b.ToTable("Students");
+                    b.ToTable("StudentBatches");
+                });
+
+            modelBuilder.Entity("Code_360.Models.StudentGuarantor", b =>
+                {
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("GuarantorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("StudentId", "GuarantorId");
+
+                    b.HasIndex("GuarantorId");
+
+                    b.ToTable("StudentGuarantors");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -392,6 +600,54 @@ namespace Code_360.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Code_360.Models.EmploymentDetails", b =>
+                {
+                    b.HasOne("Code_360.Models.Company", "Company")
+                        .WithMany("EmploymentDetails")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Code_360.Models.Student", "Student")
+                        .WithMany("EmploymentDetails")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Code_360.Models.Payment", b =>
+                {
+                    b.HasOne("Code_360.Models.Student", "Student")
+                        .WithMany("Payments")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Code_360.Models.PaymentDetails", b =>
+                {
+                    b.HasOne("Code_360.Models.Payment", "Payment")
+                        .WithMany("PaymentDetails")
+                        .HasForeignKey("PaymentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Code_360.Models.ProgrammeCourse", b =>
+                {
+                    b.HasOne("Code_360.Models.Course.Course", "Course")
+                        .WithMany("ProgrammeCourses")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Code_360.Models.Programs.Programme", "Programme")
+                        .WithMany("ProgrammeCourses")
+                        .HasForeignKey("ProgrammeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Code_360.Models.Project", b =>
                 {
                     b.HasOne("Code_360.Models.Student", "Student")
@@ -401,11 +657,41 @@ namespace Code_360.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Code_360.Models.Student", b =>
+            modelBuilder.Entity("Code_360.Models.Salary", b =>
+                {
+                    b.HasOne("Code_360.Models.EmploymentDetails", "EmploymentDetails")
+                        .WithMany("Salaries")
+                        .HasForeignKey("EmploymentDetailsId");
+                });
+
+            modelBuilder.Entity("Code_360.Models.StudentBatch", b =>
                 {
                     b.HasOne("Code_360.Models.Batch.Batch", "Batch")
-                        .WithMany("Students")
-                        .HasForeignKey("BatchId");
+                        .WithMany("StudentBatches")
+                        .HasForeignKey("BatchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Code_360.Models.Student", "Student")
+                        .WithMany("StudentBatches")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Code_360.Models.StudentGuarantor", b =>
+                {
+                    b.HasOne("Code_360.Models.Guarantor.Guarantor", "Guarantor")
+                        .WithMany("StudentGuarantors")
+                        .HasForeignKey("GuarantorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Code_360.Models.Student", "Student")
+                        .WithMany("StudentGuarantors")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

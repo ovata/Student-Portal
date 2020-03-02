@@ -18,7 +18,6 @@ namespace Code_360.Models.Programs
         public string Cost { get; set; }
 
         public IList<Batch.Batch> Batches { get; set; }
-
         public IList<ProgrammeCourse> ProgrammeCourses { get; set; }
 
     }

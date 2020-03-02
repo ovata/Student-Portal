@@ -15,6 +15,7 @@ namespace Code_360.Models.Guarantor
         [Required]
         public string Address { get; set; }
         [Required]
+        [Display(Name ="Phone Number")]
         public string Number { get; set; }
         [Required]
         public Gender Gender { get; set; }
@@ -27,5 +28,7 @@ namespace Code_360.Models.Guarantor
         public string Email { get; set; }
         [Required]
         public string Nationality { get; set; }
+
+        public IList<StudentGuarantor> StudentGuarantors { get; set; }
     }
 }

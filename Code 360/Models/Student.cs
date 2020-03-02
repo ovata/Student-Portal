@@ -39,13 +39,12 @@ namespace Code_360.Models
         [Required]
         public long BVN { get; set; }
 
+
         public IList<StudentBatch> StudentBatches { get; set; }
-
         public IList<Project> Projects { get; set; }
-
         public IList<Payment> Payments { get; set; }
-
         public IList<EmploymentDetails> EmploymentDetails { get; set; }
+        public IList<StudentGuarantor> StudentGuarantors { get; set; }
 
     }
 }
