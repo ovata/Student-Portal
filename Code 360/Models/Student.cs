@@ -39,10 +39,13 @@ namespace Code_360.Models
         [Required]
         public long BVN { get; set; }
 
-        public Guid BatchId { get; set; }
-        public Batch.Batch Batch { get; set; }
+        public IList<StudentBatch> StudentBatches { get; set; }
 
-        public IList<Projects.Project> Projects { get; set; }
+        public IList<Project> Projects { get; set; }
+
+        public IList<Payment> Payments { get; set; }
+
+        public IList<EmploymentDetails> EmploymentDetails { get; set; }
 
     }
 }

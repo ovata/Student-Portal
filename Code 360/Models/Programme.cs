@@ -19,5 +19,7 @@ namespace Code_360.Models.Programs
 
         public IList<Batch.Batch> Batches { get; set; }
 
+        public IList<ProgrammeCourse> ProgrammeCourses { get; set; }
+
     }
 }

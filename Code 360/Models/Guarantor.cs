@@ -15,6 +15,8 @@ namespace Code_360.Models.Guarantor
         [Required]
         public string Address { get; set; }
         [Required]
+        public string Number { get; set; }
+        [Required]
         public Gender Gender { get; set; }
         [Required]
         public Relationship Relationship { get; set; }
@@ -23,5 +25,7 @@ namespace Code_360.Models.Guarantor
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+        [Required]
+        public string Nationality { get; set; }
     }
 }
