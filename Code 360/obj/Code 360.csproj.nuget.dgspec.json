@@ -1,26 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SURFACE\\Desktop\\Project\\Code_360_Student_Portal\\Code 360\\Code 360.csproj": {}
+    "C:\\Users\\Shopinverse.com\\Documents\\GitRepo\\Code_360_Student_Portal\\Code 360\\Code 360.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SURFACE\\Desktop\\Project\\Code_360_Student_Portal\\Code 360\\Code 360.csproj": {
+    "C:\\Users\\Shopinverse.com\\Documents\\GitRepo\\Code_360_Student_Portal\\Code 360\\Code 360.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SURFACE\\Desktop\\Project\\Code_360_Student_Portal\\Code 360\\Code 360.csproj",
+        "projectUniqueName": "C:\\Users\\Shopinverse.com\\Documents\\GitRepo\\Code_360_Student_Portal\\Code 360\\Code 360.csproj",
         "projectName": "Code 360",
-        "projectPath": "C:\\Users\\SURFACE\\Desktop\\Project\\Code_360_Student_Portal\\Code 360\\Code 360.csproj",
-        "packagesPath": "C:\\Users\\SURFACE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SURFACE\\Desktop\\Project\\Code_360_Student_Portal\\Code 360\\obj\\",
+        "projectPath": "C:\\Users\\Shopinverse.com\\Documents\\GitRepo\\Code_360_Student_Portal\\Code 360\\Code 360.csproj",
+        "packagesPath": "C:\\Users\\Shopinverse.com\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Shopinverse.com\\Documents\\GitRepo\\Code_360_Student_Portal\\Code 360\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\SURFACE\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Shopinverse.com\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -80,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
