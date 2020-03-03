@@ -45,6 +45,7 @@ namespace Code_360.Models
         public IList<Projects.Project> Projects { get; set; }
 
         //my first junior dev
+        public string comment { get; set; }
 
     }
 }
