@@ -13,10 +13,12 @@ namespace Code_360.Controllers
     public class AdminController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public AdminController(RoleManager<IdentityRole> roleManager)
+        public AdminController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
         {
             this.roleManager = roleManager;
+            this.userManager = userManager;
         }
 
         [HttpGet]
@@ -45,6 +47,28 @@ namespace Code_360.Controllers
         {
             var roles = roleManager.Roles;
             return View(roles);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditRole(Guid Id)
+        {
+            var role = await roleManager.FindByIdAsync(Id.ToString());
+
+            var model = new EditRolesViewModel
+            {
+                Id = Guid.Parse(role.Id),
+                RoleName =  role.Name
+            };
+
+            foreach (var user in userManager.Users.ToList())
+            {
+                if (await userManager.IsInRoleAsync(user, role.Name))
+                {
+                    model.Users.Add(user.UserName);
+                }
+            }
+
+            return View(model);
         }
     }
 }

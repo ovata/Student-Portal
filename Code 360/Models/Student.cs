@@ -45,6 +45,7 @@ namespace Code_360.Models
         public IList<Payment> Payments { get; set; }
         public IList<EmploymentDetails> EmploymentDetails { get; set; }
         public IList<StudentGuarantor> StudentGuarantors { get; set; }
+        public IList<StudentCourse> StudentCourses { get; set; }
 
     }
 }

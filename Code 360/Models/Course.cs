@@ -16,5 +16,6 @@ namespace Code_360.Models.Course
         public Level Level { get; set; }
 
         public IList<ProgrammeCourse> ProgrammeCourses { get; set; }
+        public IList<StudentCourse> StudentCourses { get; set; }
     }
 }
