@@ -16,7 +16,6 @@ namespace Code_360.Models
 
         }
 
-
         public DbSet<Student> Students { get; set; }
         public DbSet<Batch.Batch> Batches { get; set; }
         public DbSet<Programs.Programme> Programmes { get; set; }

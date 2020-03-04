@@ -104,27 +104,29 @@ namespace Code_360.Migrations
 
             modelBuilder.Entity("Code_360.Models.EmploymentDetails", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("StudentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CompanyId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("StudentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
+                    b.HasKey("StudentId", "CompanyId");
 
                     b.HasIndex("CompanyId");
 
-                    b.HasIndex("StudentId");
+                    b.HasIndex("CompanyId1");
 
                     b.ToTable("EmploymentDetails");
                 });
@@ -281,7 +283,10 @@ namespace Code_360.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("EmploymentDetailsId")
+                    b.Property<Guid?>("EmploymentDetailsCompanyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("EmploymentDetailsStudentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("EmploymentId")
@@ -299,7 +304,7 @@ namespace Code_360.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmploymentDetailsId");
+                    b.HasIndex("EmploymentDetailsStudentId", "EmploymentDetailsCompanyId");
 
                     b.ToTable("Salaries");
                 });
@@ -373,11 +378,32 @@ namespace Code_360.Migrations
                     b.Property<Guid>("BatchId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("StudentId", "BatchId");
 
                     b.HasIndex("BatchId");
 
                     b.ToTable("StudentBatches");
+                });
+
+            modelBuilder.Entity("Code_360.Models.StudentCourse", b =>
+                {
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("CourseId", "StudentId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("StudentCourse");
                 });
 
             modelBuilder.Entity("Code_360.Models.StudentGuarantor", b =>
@@ -386,6 +412,9 @@ namespace Code_360.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("GuarantorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("StudentId", "GuarantorId");
@@ -602,15 +631,15 @@ namespace Code_360.Migrations
 
             modelBuilder.Entity("Code_360.Models.EmploymentDetails", b =>
                 {
-                    b.HasOne("Code_360.Models.Company", "Company")
+                    b.HasOne("Code_360.Models.Student", "Student")
                         .WithMany("EmploymentDetails")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Code_360.Models.Student", "Student")
+                    b.HasOne("Code_360.Models.Company", "Company")
                         .WithMany("EmploymentDetails")
-                        .HasForeignKey("StudentId")
+                        .HasForeignKey("CompanyId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -661,7 +690,7 @@ namespace Code_360.Migrations
                 {
                     b.HasOne("Code_360.Models.EmploymentDetails", "EmploymentDetails")
                         .WithMany("Salaries")
-                        .HasForeignKey("EmploymentDetailsId");
+                        .HasForeignKey("EmploymentDetailsStudentId", "EmploymentDetailsCompanyId");
                 });
 
             modelBuilder.Entity("Code_360.Models.StudentBatch", b =>
@@ -674,6 +703,21 @@ namespace Code_360.Migrations
 
                     b.HasOne("Code_360.Models.Student", "Student")
                         .WithMany("StudentBatches")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Code_360.Models.StudentCourse", b =>
+                {
+                    b.HasOne("Code_360.Models.Course.Course", "Course")
+                        .WithMany("StudentCourses")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Code_360.Models.Student", "Student")
+                        .WithMany("StudentCourses")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
