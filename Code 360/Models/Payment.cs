@@ -4,20 +4,19 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Code_360.Models.Projects
+namespace Code_360.Models
 {
-    public class Project
+    public class Payment
     {
         [Key]
         public Guid Id { get; set; }
         [Required]
-        [Display(Name = "Project Name")]
-        public string ProjectName { get; set; }
-        [Required]
-        public ProjectStatus ProjectStatus { get; set; }
-        public string ProjectUrl { get; set; }
+        [Display(Name ="Total Amount")]
+        public double TotalAmount { get; set; }
 
         public Guid StudentId { get; set; }
         public Student Student { get; set; }
+
+        public IList<PaymentDetails> PaymentDetails { get; set; }
     }
 }
