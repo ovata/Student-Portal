@@ -26,14 +26,16 @@
                                 <h5 class="card-title">@roles.Name</h5> 
                             </div>
                             <div class="card-footer">
-                                <a class="btn btn-primary" style="width:auto">Edit</a>
-                                <a class="btn btn-danger" style="width:auto">Delete</a>
+                                <a class="btn btn-primary" style="width:auto" asp-controller="admin" asp-action="editrole" asp-route-id="@roles.Id">
+                                Edit</a>
+                                <a class="btn btn-danger" asp-controller="admin" asp-action="delete" asp-route-id="@roles.Id" style="width:auto">Delete</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <br />
     }
 
 }

@@ -42,6 +42,11 @@ namespace Code_360.Models
             return student;
         }
 
+        public IEnumerable<StudentGuarantor> StudentGuarantors(Guid Id)
+        {
+            return studentDbContext.StudentGuarantors.Where(sg => sg.StudentId == Id).ToList();
+        }
+
         public Student UpdateStudent(Student studentUpdate)
         {
             var student = studentDbContext.Students.Attach(studentUpdate);
