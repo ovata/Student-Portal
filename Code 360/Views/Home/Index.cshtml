@@ -21,7 +21,7 @@
                     <a asp-controller="home" asp-action="index" class="list-group-item active main-color-bg">
                         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
                     </a>
-                    <a asp-action="student_details" asp-controller="home" class="list-group-item">
+                    <a asp-action="studentdetails" asp-controller="home" class="list-group-item">
                         <span class="glyphicon glyphicon-list-alt" aria-hidden="true">
                         </span> Student <span class="badge">@_student.GetAllStudent().Count()</span>
                     </a>
@@ -74,46 +74,6 @@
                                 <h4>Visitors</h4>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Latest Users -->
-                <div class="panel panel-default">
-                    <div class="panel-heading main-color-bg">
-                        <h3 class="panel-title">Student List</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class=" text-right" style="margin-bottom: 5px !important; display: flex !important; justify-content: space-between !important;" >
-                            <input type="search" class="form-control form-group" placeholder="Search" id="userinput" style="width:auto;" />
-                            <a class="btn btn-primary" asp-action="create" asp-controller="home" style="height:35px; width:auto;">Add New Student</a>
-                        </div>
-                        <table class="table table-striped table-hover" style="margin-bottom: 0!important" id="datatable">
-                            <tr>
-                                <th>Name</th>
-                                <th>Gender</th>
-                                <th>Nationality</th>
-                                <th>Addmission Type</th>
-                                <th>MaritalStatus</th>
-                                <th>Phone Number</th>
-                                <th></th>
-                            </tr>
-                            @foreach (var student in _student.GetAllStudent())
-                            {
-                        <tr>
-                            <td>@student.Name</td>
-                            <td>@student.Gender</td>
-                            <td>@student.Nationality</td>
-                            <td>@student.AddmissionType</td>
-                            <td>@student.MaritalStatus</td>
-                            <td>@student.Phone</td>
-                            <td class="text-right ml-3">
-                                <a style="margin-right:20px" class="glyphicon glyphicon-eye-open" asp-controller="home" asp-action="Student_Details" asp-route-id="@student.Id"></a>
-                                <a style="margin-right:20px" class="glyphicon glyphicon-pencil" asp-controller="home" asp-action="edit" asp-route-id="@student.Id"></a>
-                                <a style="margin-right:20px" class="glyphicon glyphicon-trash text-danger" asp-action="delete" asp-controller="home" asp-route-id="@student.Id"></a>
-                            </td>
-                        </tr>
-                            }
-                        </table>
                     </div>
                 </div>
             </div>

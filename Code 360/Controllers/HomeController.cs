@@ -33,7 +33,20 @@ namespace Code_360.Controllers
         }
 
         [AllowAnonymous]
-        public ViewResult Student_Details(Guid? id)
+        public ViewResult StudentDetails()
+        {
+            var model = _studentRepository.GetAllStudent();
+
+            HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel
+            {
+                GetStudents = model.ToList()
+            };
+
+            return View(homeDetailsViewModel);
+        }
+
+        [AllowAnonymous]
+        public ViewResult StudentInfo(Guid? id)
         {
             Student student = _studentRepository.GetStudent(id.Value);
             if (student == null)
@@ -79,7 +92,7 @@ namespace Code_360.Controllers
                     BVN = studentModel.BVN
                 };
                 _studentRepository.AddStudent(newStudent);
-                return RedirectToAction("index", new { Id = newStudent.Id });
+                return RedirectToAction("studentinfo", new { Id = newStudent.Id });
             }
             return View();
         }
