@@ -144,3 +144,4 @@ C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\bin\Debug\netc
 C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.Views.pdb
 C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.csproj.CopyComplete
+C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Razor\Views\Guarantor\AddGuarantor.cshtml.g.cs

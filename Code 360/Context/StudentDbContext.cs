@@ -30,6 +30,7 @@ namespace Code_360.Models
         public DbSet<StudentGuarantor> StudentGuarantors { get; set; }
         public DbSet<StudentBatch> StudentBatches { get; set; }
         public DbSet<EmploymentDetails> EmploymentDetails { get; set; }
+        public DbSet<StudentCourse> StudentCourses { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

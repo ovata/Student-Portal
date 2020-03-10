@@ -2,7 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Code_360.Interface;
 using Code_360.Models;
+using Code_360.Models.Course;
+using Code_360.Reposotories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,6 +52,10 @@ namespace Code_360
                 });
 
             services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IBatch, BatchRepository>();
+            services.AddScoped<ICompany, CompanyRepository>();
+            services.AddScoped<ICourse, CourseRepository>();
+            services.AddScoped<IEmploymentDetails, EmpDetailsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
