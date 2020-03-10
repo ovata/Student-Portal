@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Code_360.Reposotories
 {
-    public class GuarantorRepository : IGuarantor
+    public class GuarantorRepository : IGuarantorRepository
     {
         private StudentDbContext studentDbContext;
 

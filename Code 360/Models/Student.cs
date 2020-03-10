@@ -47,8 +47,5 @@ namespace Code_360.Models
         public IList<StudentGuarantor> StudentGuarantors { get; set; }
         public IList<StudentCourse> StudentCourses { get; set; }
 
-        //my first junior dev
-        public string comment { get; set; }
-
     }
 }
