@@ -97,13 +97,6 @@ namespace Code_360.Controllers
             return View();
         }
 
-        [Route("Delete/{id}")]
-        public IActionResult Delete(Guid id)
-        {
-            _studentRepository.RemoveStudent(id);
-            return RedirectToAction("Index");
-        }
-
         [HttpGet]
         public ViewResult Edit(Guid id)
         {
@@ -161,6 +154,13 @@ namespace Code_360.Controllers
                 return RedirectToAction("index");
             }
             return View();
+        }
+
+        [Route("Delete/{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            _studentRepository.RemoveStudent(id);
+            return RedirectToAction("Index");
         }
 
         private string ProcessUploadedFile(StudentViewModel studentModel)
