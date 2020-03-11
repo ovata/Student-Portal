@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Code_360.Interface;
 using Code_360.Models;
 using Code_360.Models.Course;
+using Code_360.Models.Interface;
 using Code_360.Reposotories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -49,13 +50,23 @@ namespace Code_360
                     .RequireAuthenticatedUser()
                     .Build();
                 option.Filters.Add(new AuthorizeFilter(policy));
-                });
+            });
 
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IBatch, BatchRepository>();
             services.AddScoped<ICompany, CompanyRepository>();
             services.AddScoped<ICourse, CourseRepository>();
             services.AddScoped<IEmploymentDetails, EmpDetailsRepository>();
+            services.AddScoped<IGuarantor, GuarantorRepository>();
+            services.AddScoped<IPayment, PaymentRepository>();
+            services.AddScoped<IPaymentDetails, PaymentDetailsRepository>();
+            services.AddScoped<IProgramme, ProgrammeRepository>();
+            services.AddScoped<IProgrammeCourse, ProgrammeCourseRepository>();
+            services.AddScoped<IProject, ProjectRepository>();
+            services.AddScoped<ISalary, SalaryRepository>();
+            services.AddScoped<IStudentBatch, StudentBatchRepository>();
+            services.AddScoped<IStudentCourse, StudentCourseRepository>();
+            services.AddScoped<IStudentGuarantor, StudentGuarantorRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
