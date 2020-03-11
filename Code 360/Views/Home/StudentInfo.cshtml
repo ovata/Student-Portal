@@ -6,70 +6,130 @@
     var Image = "~/Images/" + (Model.Student.Photo ?? "coding.jpg");
 }
 
-<section id="breadcrumb">
-    <div class="container">
-        <ol class="breadcrumb">
-            <li class="active">Student | Details | @Model.Student.Name </li>
-        </ol>
-    </div>
-</section>
+    <section id="breadcrumb">
+        <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li class="active">Student | Info | @Model.Student.Name   </li>
+            </ol>
+        </div>
+    </section>
 
-<section id="main">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="list-group">
-                    <a asp-controller="home" asp-action="index" class="list-group-item ">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
-                    </a>
-                    <a asp-action="studentdetails" asp-controller="home" class="list-group-item active main-color-bg">
-                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true">
-                        </span> Student <span class="badge">@_student.GetAllStudent().Count()</span>
-                    </a>
-                </div>
-
-                <div class="well">
-                    <h4>Disk Space Used </h4>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" style="width: 23%;">
-                            23%
-                        </div>
+    <section id="main">
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-between">
+                <div class="col-md-3 col-sm-12 col-lg-2">
+                    <div class="list-group">
+                        <a asp-controller="home" asp-action="index" class="list-group-item ">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
+                        </a>
+                        <a asp-action="studentdetails" asp-controller="home" class="list-group-item active main-color-bg">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true">
+                            </span> Student <span class="badge">@_student.GetAllStudent().Count()</span>
+                        </a>
+                        <a asp-action="" asp-controller="" class="list-group-item">
+                            <span class="glyphicon glyphicon-tags" aria-hidden="true">
+                            </span> Guarantor <span class="badge">@_guarantor.GetGuarantors().Count()</span>
+                        </a>
                     </div>
-                    <h4>Bandwidth Used</h4>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%;">
-                            87%
+
+                    <div class="well">
+                        <h4>Disk Space Used </h4>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" style="width: 23%;">
+                                23%
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9">
-
-                <!-- Website Overview -->
-
-                <div class="row justify-content-center m-3">
-                    <div class="col-sm-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <h1>@Model.Student.Name</h1>
-                            </div>
-
-                            <div class="card-body text-center">
-                                <img class="card-img-top" style="width: auto; height: 500px;" src="@Image" asp-append-version="true" />
-
-                                <h4>Phone No : @Model.Student.Phone</h4>
-                                <h4>Marital Status : @Model.Student.MaritalStatus.Value</h4>
-                                <h4>Nationality : @Model.Student.Nationality</h4>
-
-                            </div>
-                            <div class="card-footer text-center">
-                                <a asp-controller="home" asp-action="studentdetails" class="btn btn-danger">Back</a>
+                        <h4>Bandwidth Used</h4>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%;">
+                                87%
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-9">
 
+                    <!-- Website Overview -->
+
+                    <div class="row">
+                        <div class="col-sm-8 col-lg-12">
+                            <div class="card" id="card">
+                                <div class="card-header main-color-bg">
+                                    <h1>@Model.Student.Name</h1>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-9 col-lg-8">
+                                            <div class="card-header mb-2">
+                                                Name : @Model.Student.Name
+                                            </div>
+
+                                            <div class="card-header mb-1">
+                                                Phone No : @Model.Student.Phone
+                                            </div>
+
+                                            <div class="card-header mb-2">
+                                                Marital Status : @Model.Student.MaritalStatus.Value
+                                            </div>
+
+                                            <div class="card-header mb-1">
+                                                Nationality : @Model.Student.Nationality
+                                            </div>
+
+                                            <div class="card-header mb-2">
+                                                Address : @Model.Student.Address
+                                            </div>
+
+                                            <div class="card-header mb-2">
+                                                Addmission Type : @Model.Student.AddmissionType
+                                            </div>
+
+                                            <div class="card-header mb-2">
+                                                Date Of Birth : @Model.Student.DateOfBirth
+                                            </div>
+
+                                            <div class="card-header mb-2">
+                                                Next Of KinName : @Model.Student.NextOfKinName
+                                            </div>
+
+                                            <div class="card-header mb-2">
+                                                Next Of KinName : @Model.Student.NextOfKinName
+                                            </div>
+
+                                            <div class="card-header mb-2">
+                                                Phone No : @Model.Student.NextOfKinPhone
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-lg-4">
+                                            <img class="card-img-top" style="width: 90%; height:350px;" src="@Image" asp-append-version="true" />
+                                        </div>
+                                    </div>
+
+                                    <hr />
+                                    <div class="card">
+                                        <div class="card-header main-color-bg">
+                                            <h4>Guarantor</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            @foreach (var sg in ViewBag.Guarantors) 
+                                            {
+                                                <h3>@sg.Guarantor.Name</h3>
+                                            }
+                                        </div>
+                                        <div class="card-footer">
+                                            <a class="btn btn-primary float-right" asp-controller="guarantor" asp-action="addguarantor" asp-route-id="@Model.Student.Id" style="width:auto">Add Guarantor</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <a asp-controller="home" asp-action="studentdetails" asp-route-id="@Model.Student.Id" class="btn btn-danger">Back</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>

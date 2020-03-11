@@ -1,1 +1,143 @@
-﻿
+﻿@model GuarantorViewModel
+
+@{
+    ViewBag.Title = "Add Guarantor";
+}
+
+
+    <section id="breadcrumb">
+        <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li class="active">Guarantor | Add Guarantor</li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="main">
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-between">
+                <div class="col-md-3 col-sm-12 col-lg-2">
+                    <div class="list-group">
+                        <a asp-controller="home" asp-action="index" class="list-group-item ">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
+                        </a>
+                        <a asp-action="studentdetails" asp-controller="home" class="list-group-item active main-color-bg">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Student
+                            <span class="badge">@_student.GetAllStudent().Count()</span>
+                        </a>
+                        <a asp-action="" asp-controller="guarantor" class="list-group-item">
+                            <span class="glyphicon glyphicon-tags" aria-hidden="true">
+                            </span> Guarantor <span class="badge">@_guarantor.GetGuarantors().Count()</span>
+                        </a>
+                    </div>
+
+                    <div class="well">
+                        <h4>Disk Space Used </h4>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" style="width: 23%;">
+                                23%
+                            </div>
+                        </div>
+                        <h4>Bandwidth Used</h4>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%;">
+                                87%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="panel panel-default">
+                        <div class="panel-heading main-color-bg">
+                            <h3 class="panel-title">Add Guarantor</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h4 class="text-center">Guarantor Details</h4>
+                            <hr />
+                            <form enctype="multipart/form-data" asp-controller="guarantor" asp-action="addguarantor" method="post" class="m-3">
+                                <div class="form-group row">
+
+                                    <input asp-for="StudentId" class="form-control" type="hidden" placeholder="Name" />
+
+                                    <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Name" class="form-control" placeholder="Name" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label asp-for="Address" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Address" class="form-control" placeholder="Address" />
+                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label asp-for="Relationship" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <select asp-for="Relationship" class="custom-select mr-sm-2" asp-items="Html.GetEnumSelectList<Relationship>()">
+                                            <option value="">-- Please Select --</option>
+                                        </select>
+                                        <span asp-validation-for="Relationship" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label asp-for="Gender" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <select asp-for="Gender" class="custom-select mr-sm-2" asp-items="Html.GetEnumSelectList<Gender>()">
+                                            <option value="">-- Please Select --</option>
+                                        </select>
+                                        <span asp-validation-for="Gender" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label asp-for="Number" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Number" class="form-control" placeholder="Phone number" />
+                                        <span asp-validation-for="Number" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label asp-for="Occupation" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Occupation" class="form-control" placeholder="Occupation" />
+                                        <span asp-validation-for="Occupation" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label asp-for="Nationality" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Nationality" class="form-control" placeholder="Nationality" />
+                                        <span asp-validation-for="Nationality" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label asp-for="Email" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="Email" class="form-control" placeholder="Email" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <hr />
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Create</button>
+                                    <a class="btn btn-danger text-right"asp-route-id="@Model.Id" asp-action="studentinfo" asp-controller="home" style="width:auto">
+                                    Back</a>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

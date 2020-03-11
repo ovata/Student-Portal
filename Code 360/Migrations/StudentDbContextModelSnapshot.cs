@@ -365,9 +365,6 @@ namespace Code_360.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("comment")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Students");
@@ -406,7 +403,7 @@ namespace Code_360.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("StudentCourse");
+                    b.ToTable("StudentCourses");
                 });
 
             modelBuilder.Entity("Code_360.Models.StudentGuarantor", b =>
@@ -415,9 +412,6 @@ namespace Code_360.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("GuarantorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("StudentId", "GuarantorId");

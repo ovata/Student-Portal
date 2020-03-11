@@ -1,4 +1,5 @@
-﻿using Code_360.Models;
+﻿using Code_360.Interface;
+using Code_360.Models;
 using Code_360.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -15,11 +16,13 @@ namespace Code_360.Controllers
     {
         private readonly IStudentRepository _studentRepository;
         private readonly IHostingEnvironment hostingEnvironment;
+        private readonly IStudentGuarantor _sgRepo;
 
-        public HomeController(IStudentRepository studentRepository, IHostingEnvironment hostingEnvironment)
+        public HomeController(IStudentRepository studentRepository, IHostingEnvironment hostingEnvironment, IStudentGuarantor studentGuarantor)
         {
             _studentRepository = studentRepository;
             this.hostingEnvironment = hostingEnvironment;
+            _sgRepo = studentGuarantor;
         }
 
         [Route("")]
@@ -54,6 +57,18 @@ namespace Code_360.Controllers
                 Response.StatusCode = 404;
                 return View("StudentNotFound", id.Value);
             }
+
+            var guarantors = _sgRepo.GetStudentGuarantors();
+            var studentGuarantors = new List<StudentGuarantor>();
+            foreach(var g in guarantors)
+            {
+                if(g.StudentId == id.Value)
+                {
+                    studentGuarantors.Add(g);
+                }
+            }
+            ViewBag.Guarantors = studentGuarantors;
+
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel
             {
                 Student = student,

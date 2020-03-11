@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Code_360.Interface;
+using Code_360.Models;
 using Code_360.Models.Guarantor;
 using Code_360.Models.Interface;
 using Code_360.ViewModels;
@@ -14,10 +16,12 @@ namespace Code_360.Controllers
     public class GuarantorController : Controller 
     {
         private readonly IGuarantor _guarantorRepository;
+        private readonly IStudentGuarantor _studentGuarantor;
 
-        public GuarantorController(IGuarantor guarantorRepository)
+        public GuarantorController(IGuarantor guarantorRepository, IStudentGuarantor studentGuarantor)
         {
             _guarantorRepository = guarantorRepository;
+            _studentGuarantor = studentGuarantor;
         }
 
         public IActionResult Index()
@@ -26,9 +30,14 @@ namespace Code_360.Controllers
         }
 
         [HttpGet]
-        public ViewResult AddGuarantor()
+        public ViewResult AddGuarantor(Guid? Id)
         {
-            return View();
+            GuarantorViewModel guarantor = new GuarantorViewModel();
+            if (Id != null)
+            {
+                guarantor.StudentId = Id.Value;
+            };
+            return View(guarantor);
         }
 
         [HttpPost]
@@ -47,9 +56,16 @@ namespace Code_360.Controllers
                     Email = guarantorModel.Email,
                     Nationality = guarantorModel.Nationality
                 };
-                _guarantorRepository.AddGuarantor(newGuarantor);
+                var model = _guarantorRepository.AddGuarantor(newGuarantor);
+                StudentGuarantor studentGuarantor = new StudentGuarantor
+                {
+                    StudentId = guarantorModel.StudentId,
+                    GuarantorId = model.Id
+                };
+                _studentGuarantor.AddStdGtr(studentGuarantor);
+                return RedirectToAction("studentinfo", "home", new { id = guarantorModel.StudentId});
             }
-            return View();
+            return View(guarantorModel);
         }
         
         [HttpPost]

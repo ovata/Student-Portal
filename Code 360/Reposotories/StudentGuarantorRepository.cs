@@ -1,5 +1,6 @@
 ﻿using Code_360.Interface;
 using Code_360.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace Code_360.Reposotories
 
         public IEnumerable<StudentGuarantor> GetStudentGuarantors()
         {
-            return dbContext.StudentGuarantors;
+            return dbContext.StudentGuarantors.Include(sg => sg.Guarantor);
         }
 
         public StudentGuarantor RemoveStsGtr(Guid Id)

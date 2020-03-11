@@ -7,8 +7,6 @@ namespace Code_360.Models
 {
     public class StudentGuarantor
     {
-        public Guid Id { get; set; }
-
         public Guid StudentId { get; set; }
         public Student Student { get; set; }
 

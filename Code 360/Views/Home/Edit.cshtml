@@ -6,185 +6,190 @@
 }
 
 
-<section id="breadcrumb">
-    <div class="container">
-        <ol class="breadcrumb">
-            <li class="active">Student| Edit | @Model.Name</li>
-        </ol>
-    </div>
-</section>
+    <section id="breadcrumb">
+        <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li class="active">Student | Edit | @Model.Name</li>
+            </ol>
+        </div>
+    </section>
 
 
-<section id="main">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="list-group">
-                    <a asp-controller="home" asp-action="index" class="list-group-item ">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
-                    </a>
-                    <a asp-action="studentdetails" asp-controller="home" class="list-group-item active main-color-bg">
-                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Student 
-                    <span class="badge">@_student.GetAllStudent().Count()</span></a>
-                </div>
-
-                <div class="well">
-                    <h4>Disk Space Used </h4>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" style="width: 23%;">
-                            23%
-                        </div>
-                    </div>
-                    <h4>Bandwidth Used</h4>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%;">
-                            87%
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9">
-
-                <form enctype="multipart/form-data" asp-controller="home" asp-action="edit" method="post" class="m-3">
-                    <div class="form-group row">
-                        <input hidden asp-for="Id" />
-                        <input hidden asp-for="ExistingPhotoPath" />
-                        <label asp-for="Name" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input asp-for="Name" class="form-control" placeholder="Name" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
+    <section id="main">
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-between">
+                <div class="col-md-3 col-sm-12 col-lg-2">
+                    <div class="list-group">
+                        <a asp-controller="home" asp-action="index" class="list-group-item ">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
+                        </a>
+                        <a asp-action="studentdetails" asp-controller="home" class="list-group-item active main-color-bg">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Student
+                            <span class="badge">@_student.GetAllStudent().Count()</span>
+                        </a>
+                        <a asp-action="" asp-controller="" class="list-group-item">
+                            <span class="glyphicon glyphicon-tags" aria-hidden="true">
+                            </span> Guarantor <span class="badge">@_guarantor.GetGuarantors().Count()</span>
+                        </a>
                     </div>
 
-                    <div class="form-group row">
-                        <label asp-for="Address" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input asp-for="Address" class="form-control" placeholder="Address" />
-                            <span asp-validation-for="Address" class="text-danger"></span>
+                    <div class="well">
+                        <h4>Disk Space Used </h4>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" style="width: 23%;">
+                                23%
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label asp-for="AddmissionType" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <select asp-for="AddmissionType" class="custom-select mr-sm-2" asp-items="Html.GetEnumSelectList<AddmissionType>()">
-                                <option value="">-- Please Select --</option>
-                            </select>
-                            <span asp-validation-for="AddmissionType" class="text-danger"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label asp-for="Gender" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <select asp-for="Gender" class="custom-select mr-sm-2" asp-items="Html.GetEnumSelectList<Gender>()">
-                                <option value="">-- Please Select --</option>
-                            </select>
-                            <span asp-validation-for="Gender" class="text-danger"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label asp-for="DateOfBirth" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input type="date" asp-for="DateOfBirth" class="form-control" />
-                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label asp-for="Phone" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input asp-for="Phone" class="form-control" placeholder="Phone Number" />
-                            <span asp-validation-for="Phone" class="text-danger"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label asp-for="Nationality" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input asp-for="Nationality" class="form-control" placeholder="Nationality" />
-                            <span asp-validation-for="Nationality" class="text-danger"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label asp-for="Photo" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <div class="custom-file">
-                                <input asp-for="Photo" class="form-control custom-file-input" />
-                                <label class="custom-file-label">Click here to change Photo...</label>
+                        <h4>Bandwidth Used</h4>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%;">
+                                87%
                             </div>
                         </div>
                     </div>
-
-                    <div class="form-group row">
-                        <label asp-for="MaritalStatus" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <select asp-for="MaritalStatus" class="custom-select mr-sm-2" asp-items="Html.GetEnumSelectList<MaritalStatus>()">
-                                <option value="">-- Please Select --</option>
-                            </select>
-                            <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+                </div>
+                <div class="col-md-9">
+                    
+                    <form enctype="multipart/form-data" asp-controller="home" asp-action="edit" method="post" class="m-3">
+                        <div class="form-group row">
+                            <input hidden asp-for="Id" />
+                            <input hidden asp-for="ExistingPhotoPath" />
+                            <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Name" class="form-control" placeholder="Name" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <label asp-for="BVN" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input asp-for="BVN" class="form-control" placeholder="BVN" />
-                            <span asp-validation-for="BVN" class="text-danger"></span>
+                        <div class="form-group row">
+                            <label asp-for="Address" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Address" class="form-control" placeholder="Address" />
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <hr />
-
-                    <div class="form-group row">
-                        <label asp-for="NextOfKinName" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input asp-for="NextOfKinName" class="form-control" placeholder="Name of NOS" />
-                            <span asp-validation-for="NextOfKinName" class="text-danger"></span>
+                        <div class="form-group row">
+                            <label asp-for="AddmissionType" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <select asp-for="AddmissionType" class="custom-select mr-sm-2" asp-items="Html.GetEnumSelectList<AddmissionType>()">
+                                    <option value="">-- Please Select --</option>
+                                </select>
+                                <span asp-validation-for="AddmissionType" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <label asp-for="NextOfKinPhone" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input asp-for="NextOfKinPhone" class="form-control" placeholder="Phone Number" />
-                            <span asp-validation-for="NextOfKinPhone" class="text-danger"></span>
+                        <div class="form-group row">
+                            <label asp-for="Gender" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <select asp-for="Gender" class="custom-select mr-sm-2" asp-items="Html.GetEnumSelectList<Gender>()">
+                                    <option value="">-- Please Select --</option>
+                                </select>
+                                <span asp-validation-for="Gender" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <label asp-for="NextOfKinEmail" class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <input asp-for="NextOfKinEmail" class="form-control" placeholder="Email" />
-                            <span asp-validation-for="NextOfKinEmail" class="text-danger"></span>
+                        <div class="form-group row">
+                            <label asp-for="DateOfBirth" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input type="date" asp-for="DateOfBirth" class="form-control" />
+                                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group ">
-                        <img src="@Image" style="width: auto; height: 500px;" asp-append-version="true" />
-                    </div>
-                    @*@section Scripts {
-        <script>
-            $(document).ready(function () {
-                $('.custom-file-input').on("change", function () {
-                    var fileName = $(this).val().split("\\").pop();
-                    $(this).next('.custom-file-label').html(fileName);
-                });
-            });
-        </script>
-        }*@
-
-                    <div class="form-group row">
-                        <div>
-                            <button type="submit" class="btn btn-primary">Update</button>
-                            <a class="btn btn-danger" asp-controller="home" asp-action="index">Discard</a>
+                        <div class="form-group row">
+                            <label asp-for="Phone" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Phone" class="form-control" placeholder="Phone Number" />
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
-                </form>
 
+                        <div class="form-group row">
+                            <label asp-for="Nationality" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Nationality" class="form-control" placeholder="Nationality" />
+                                <span asp-validation-for="Nationality" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label asp-for="Photo" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <div class="custom-file">
+                                    <input asp-for="Photo" class="form-control custom-file-input" />
+                                    <label class="custom-file-label">Click here to change Photo...</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label asp-for="MaritalStatus" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <select asp-for="MaritalStatus" class="custom-select mr-sm-2" asp-items="Html.GetEnumSelectList<MaritalStatus>()">
+                                    <option value="">-- Please Select --</option>
+                                </select>
+                                <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label asp-for="BVN" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="BVN" class="form-control" placeholder="BVN" />
+                                <span asp-validation-for="BVN" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="form-group row">
+                            <label asp-for="NextOfKinName" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="NextOfKinName" class="form-control" placeholder="Name of NOS" />
+                                <span asp-validation-for="NextOfKinName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label asp-for="NextOfKinPhone" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="NextOfKinPhone" class="form-control" placeholder="Phone Number" />
+                                <span asp-validation-for="NextOfKinPhone" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label asp-for="NextOfKinEmail" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="NextOfKinEmail" class="form-control" placeholder="Email" />
+                                <span asp-validation-for="NextOfKinEmail" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <img src="@Image" style="width: auto; height: 500px;" asp-append-version="true" />
+                        </div>
+                        @*@section Scripts {
+                        <script>
+                            $(document).ready(function () {
+                                $('.custom-file-input').on("change", function () {
+                                    var fileName = $(this).val().split("\\").pop();
+                                    $(this).next('.custom-file-label').html(fileName);
+                                });
+                            });
+                        </script>
+                        }*@
+
+                        <div class="form-group row">
+                            <div>
+                                <button type="submit" class="btn btn-primary">Update</button>
+                                <a class="btn btn-danger" asp-controller="home" asp-action="studentdetails">Discard</a>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>

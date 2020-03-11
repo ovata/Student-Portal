@@ -29,5 +29,7 @@ namespace Code_360.ViewModels
         public string Email { get; set; }
         [Required]
         public string Nationality { get; set; }
+
+        public Guid StudentId { get; set; }
     }
 }

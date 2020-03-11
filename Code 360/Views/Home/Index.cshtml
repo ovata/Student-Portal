@@ -6,7 +6,7 @@
 }
 
 <section id="breadcrumb">
-    <div class="container">
+    <div class="container-fluid">
         <ol class="breadcrumb">
             <li class="active">Dashboard</li>
         </ol>
@@ -14,9 +14,9 @@
 </section>
 
 <section id="main">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-12">
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-between">
+            <div class="col-md-3 col-sm-12 col-lg-2">
                 <div class="list-group">
                     <a asp-controller="home" asp-action="index" class="list-group-item active main-color-bg">
                         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
@@ -24,6 +24,10 @@
                     <a asp-action="studentdetails" asp-controller="home" class="list-group-item">
                         <span class="glyphicon glyphicon-list-alt" aria-hidden="true">
                         </span> Student <span class="badge">@_student.GetAllStudent().Count()</span>
+                    </a>
+                    <a asp-action="" asp-controller="" class="list-group-item">
+                        <span class="glyphicon glyphicon-tags" aria-hidden="true">
+                        </span> Guarantor <span class="badge">@_guarantor.GetGuarantors().Count()</span>
                     </a>
                 </div>
 
@@ -44,6 +48,7 @@
             </div>
 
             <div class="col-md-9 col-sm-12">
+
                 <!-- Website Overview -->
                 <div class="panel panel-default">
                     <div class="panel-heading main-color-bg">
