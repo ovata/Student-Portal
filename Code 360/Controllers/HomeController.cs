@@ -58,23 +58,16 @@ namespace Code_360.Controllers
                 return View("StudentNotFound", id.Value);
             }
 
-            var guarantors = _sgRepo.GetStudentGuarantors();
-            var studentGuarantors = new List<StudentGuarantor>();
-            foreach(var g in guarantors)
-            {
-                if(g.StudentId == id.Value)
-                {
-                    studentGuarantors.Add(g);
-                }
-            }
-            ViewBag.Guarantors = studentGuarantors;
+            var studentGuarantors = _sgRepo.GetStudentGuarantor(id.Value).ToList();
 
-            HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel
+
+            AllModelsViewModel allModelsViewModel = new AllModelsViewModel
             {
                 Student = student,
+                GetGuarantors = studentGuarantors,
                 PageTitle = "Student Details"
             }; 
-            return View(homeDetailsViewModel);
+            return View(allModelsViewModel);
         }
 
         [HttpGet]

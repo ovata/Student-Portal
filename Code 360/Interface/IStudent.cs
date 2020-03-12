@@ -12,5 +12,7 @@ namespace Code_360.Models
         Student RemoveStudent(Guid Id);
         Student UpdateStudent(Student studentUpdate);
         IEnumerable<Student> GetAllStudent();
+
+        List<StudentGuarantor> GetSG(Guid id);
     }
 }
