@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Code_360.ViewModels;
+﻿using Code_360.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -62,7 +59,7 @@ namespace Code_360.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await signInManager.PasswordSignInAsync(loginViewModel.Email, loginViewModel.Password, 
+                var result = await signInManager.PasswordSignInAsync(loginViewModel.Email, loginViewModel.Password,
                                                                      loginViewModel.Remember_Me, false);
 
                 if (result.Succeeded)
@@ -80,9 +77,9 @@ namespace Code_360.Controllers
             return View(loginViewModel);
         }
 
-        [AcceptVerbs("Get","Post")]
+        [AcceptVerbs("Get", "Post")]
         [AllowAnonymous]
-        public async Task<IActionResult> IsEmailAvailable( string email)
+        public async Task<IActionResult> IsEmailAvailable(string email)
         {
             var user = await userManager.FindByEmailAsync(email);
             if (user == null)

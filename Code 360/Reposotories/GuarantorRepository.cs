@@ -1,11 +1,8 @@
 ﻿using Code_360.Models;
 using Code_360.Models.Guarantor;
 using Code_360.Models.Interface;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Code_360.Reposotories
 {

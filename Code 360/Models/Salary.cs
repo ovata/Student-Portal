@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Code_360.Models
 {
@@ -13,10 +10,10 @@ namespace Code_360.Models
         [Required]
         public string Role { get; set; }
         [Required]
-        [Display(Name ="Salary")]
+        [Display(Name = "Salary")]
         public double SalaryAmount { get; set; }
         [Required]
-        [Display(Name ="Pay Day")]
+        [Display(Name = "Pay Day")]
         [DataType(DataType.Date)]
         public DateTime ExpectedPayDay { get; set; }
 

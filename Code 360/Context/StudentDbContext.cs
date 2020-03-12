@@ -1,16 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Code_360.Models
 {
     public class StudentDbContext : IdentityDbContext<IdentityUser>
     {
-        public StudentDbContext(DbContextOptions<StudentDbContext>options) 
+        public StudentDbContext(DbContextOptions<StudentDbContext> options)
             : base(options)
         {
 

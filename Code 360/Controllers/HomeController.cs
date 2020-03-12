@@ -5,10 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Code_360.Controllers
 {
@@ -59,14 +57,12 @@ namespace Code_360.Controllers
             }
 
             var studentGuarantors = _sgRepo.GetStudentGuarantor(id.Value).ToList();
-
-
             AllModelsViewModel allModelsViewModel = new AllModelsViewModel
             {
                 Student = student,
                 GetGuarantors = studentGuarantors,
                 PageTitle = "Student Details"
-            }; 
+            };
             return View(allModelsViewModel);
         }
 
@@ -179,7 +175,7 @@ namespace Code_360.Controllers
                 string UploadFolder = Path.Combine(hostingEnvironment.WebRootPath, "Images");
                 fileName = Guid.NewGuid().ToString() + "_" + studentModel.Photo.FileName;
                 string filePath = Path.Combine(UploadFolder, fileName);
-                using(var fileStream = new FileStream(filePath, FileMode.Create))
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     studentModel.Photo.CopyTo(fileStream);
                 }

@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Code_360.Interface;
+﻿using Code_360.Interface;
 using Code_360.Models;
 using Code_360.Models.Guarantor;
 using Code_360.Models.Interface;
 using Code_360.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Code_360.Controllers
 {
-    public class GuarantorController : Controller 
+    public class GuarantorController : Controller
     {
         private readonly IGuarantor _guarantorRepository;
         private readonly IStudentGuarantor _studentGuarantor;
@@ -68,11 +66,11 @@ namespace Code_360.Controllers
                     GuarantorId = model.Id
                 };
                 _studentGuarantor.AddStdGtr(studentGuarantor);
-                return RedirectToAction("studentinfo", "home", new { id = guarantorModel.StudentId});
+                return RedirectToAction("studentinfo", "home", new { id = guarantorModel.StudentId });
             }
             return View(guarantorModel);
         }
-        
+
         [HttpPost]
         public IActionResult EditGuarantor(UpdateGuarantor updateGuarantor)
         {
@@ -109,14 +107,14 @@ namespace Code_360.Controllers
             };
             return View(update);
         }
-        
+
         public ViewResult GuarantorDetails()
         {
             var model = _guarantorRepository.GetGuarantors();
 
             AllModelsViewModel allModelsViewModel = new AllModelsViewModel
             {
-               AllGuarantors=model.ToList()
+                AllGuarantors = model.ToList()
             };
             return View(allModelsViewModel);
         }

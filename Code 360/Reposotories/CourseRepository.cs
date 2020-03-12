@@ -3,8 +3,6 @@ using Code_360.Models;
 using Code_360.Models.Course;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Code_360.Reposotories
 {

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Code_360.Models.Batch
 {
@@ -18,7 +16,7 @@ namespace Code_360.Models.Batch
         public string Project { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        public DateTime  StartDate { get; set; }
+        public DateTime StartDate { get; set; }
         [Required]
         [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
@@ -26,6 +24,6 @@ namespace Code_360.Models.Batch
         public Guid ProgrammeId { get; set; }
         public Programs.Programme Programme { get; set; }
 
-        public IList<StudentBatch> StudentBatches { get;set; }
+        public IList<StudentBatch> StudentBatches { get; set; }
     }
 }

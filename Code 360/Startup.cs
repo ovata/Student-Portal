@@ -1,17 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Code_360.Interface;
 using Code_360.Models;
-using Code_360.Models.Course;
 using Code_360.Models.Interface;
 using Code_360.Reposotories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -34,7 +27,7 @@ namespace Code_360
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<StudentDbContext>(options => 
+            services.AddDbContextPool<StudentDbContext>(options =>
             options.UseSqlServer(_config.GetConnectionString("StudentDbConnection")));
 
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
@@ -42,13 +35,14 @@ namespace Code_360
                 options.Password.RequireDigit = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
-            })  .AddEntityFrameworkStores<StudentDbContext>();
+            }).AddEntityFrameworkStores<StudentDbContext>();
 
-            services.AddMvc(option => {
-                    option.EnableEndpointRouting = false;
-                    var policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build();
+            services.AddMvc(option =>
+            {
+                option.EnableEndpointRouting = false;
+                var policy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
                 option.Filters.Add(new AuthorizeFilter(policy));
             });
 
@@ -90,7 +84,7 @@ namespace Code_360
             {
                 endpoints.MapControllerRoute("default", "{controller=home}/{action=index}/{id?}");
             });
-            
+
         }
     }
 }

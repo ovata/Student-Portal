@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Code_360.ViewModels;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Code_360.ViewModels;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -64,7 +64,7 @@ namespace Code_360.Controllers
             var model = new EditRolesViewModel
             {
                 Id = Guid.Parse(role.Id),
-                RoleName =  role.Name
+                RoleName = role.Name
             };
 
             foreach (var user in userManager.Users.ToList())
@@ -103,7 +103,7 @@ namespace Code_360.Controllers
             {
                 var userRoleViewModel = new UserRoleViewModel
                 {
-                    UserId =Guid.Parse(user.Id),
+                    UserId = Guid.Parse(user.Id),
                     UserName = user.UserName
                 };
 
@@ -121,7 +121,7 @@ namespace Code_360.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel> models,Guid roleId)
+        public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel> models, Guid roleId)
         {
             var role = await roleManager.FindByIdAsync(roleId.ToString());
 
@@ -157,6 +157,6 @@ namespace Code_360.Controllers
             }
             return RedirectToAction("editrole", new { id = roleId });
         }
-        
+
     }
 }
