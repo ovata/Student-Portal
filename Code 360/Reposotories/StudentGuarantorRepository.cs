@@ -24,9 +24,9 @@ namespace Code_360.Reposotories
             return _studentGuarantor;
         }
 
-        public StudentGuarantor GetStudentGuarantor(Guid Id)
+        public IEnumerable<StudentGuarantor> GetStudentGuarantor(Guid Id)
         {
-            return dbContext.StudentGuarantors.Find(Id);
+            return dbContext.StudentGuarantors.Where(g => g.StudentId == Id);
         }
 
         public IEnumerable<StudentGuarantor> GetStudentGuarantors()

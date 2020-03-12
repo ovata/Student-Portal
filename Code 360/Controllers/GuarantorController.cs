@@ -24,10 +24,15 @@ namespace Code_360.Controllers
             _studentGuarantor = studentGuarantor;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //public IActionResult GuarantorDetails()
+        //{
+        //    var model = _guarantorRepository.GetGuarantors();
+        //    GuarantorDetailsViewModel guarantorDetails = new GuarantorDetailsViewModel
+        //    {
+        //        GetGuarantors = model.ToList()
+        //    };
+        //    return View(guarantorDetails);
+        //}
 
         [HttpGet]
         public ViewResult AddGuarantor(Guid? Id)
@@ -104,16 +109,16 @@ namespace Code_360.Controllers
             };
             return View(update);
         }
-
+        
         public ViewResult GuarantorDetails()
         {
             var model = _guarantorRepository.GetGuarantors();
 
-            GuarantorDetailsViewModel guarantorDetailsViewModel = new GuarantorDetailsViewModel
+            AllModelsViewModel allModelsViewModel = new AllModelsViewModel
             {
-                GetGuarantors = model.ToList()
+               AllGuarantors=model.ToList()
             };
-            return View(guarantorDetailsViewModel);
+            return View(allModelsViewModel);
         }
 
         public ViewResult GuarantorInfo(Guid? Id)

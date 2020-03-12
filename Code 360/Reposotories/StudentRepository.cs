@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace Code_360.Models
 
         public Student GetStudent(Guid Id)
         {
-            return studentDbContext.Students.Find(Id);
+            return studentDbContext.Students.Include(s => s.StudentGuarantors).FirstOrDefault(s => s.Id == Id);
         }
 
         public Student RemoveStudent(Guid Id)
@@ -48,6 +49,11 @@ namespace Code_360.Models
             student.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             studentDbContext.SaveChanges();
             return studentUpdate;
+        }
+
+        public List<StudentGuarantor> GetSG(Guid id)
+        {
+            return studentDbContext.StudentGuarantors.Include(sg => sg.Guarantor).Where(sg => sg.GuarantorId == id).ToList();
         }
     }
 }
