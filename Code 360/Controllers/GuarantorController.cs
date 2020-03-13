@@ -6,6 +6,7 @@ using Code_360.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,16 +22,6 @@ namespace Code_360.Controllers
             _guarantorRepository = guarantorRepository;
             _studentGuarantor = studentGuarantor;
         }
-
-        //public IActionResult GuarantorDetails()
-        //{
-        //    var model = _guarantorRepository.GetGuarantors();
-        //    GuarantorDetailsViewModel guarantorDetails = new GuarantorDetailsViewModel
-        //    {
-        //        GetGuarantors = model.ToList()
-        //    };
-        //    return View(guarantorDetails);
-        //}
 
         [HttpGet]
         public ViewResult AddGuarantor(Guid? Id)
@@ -80,6 +71,7 @@ namespace Code_360.Controllers
                 guarantor.Name = updateGuarantor.Name;
                 guarantor.Number = updateGuarantor.Number;
                 guarantor.Gender = updateGuarantor.Gender;
+                guarantor.Address = updateGuarantor.Address;
                 guarantor.Relationship = updateGuarantor.Relationship;
                 guarantor.Occupation = updateGuarantor.Occupation;
                 guarantor.Email = updateGuarantor.Email;
@@ -103,7 +95,8 @@ namespace Code_360.Controllers
                 Relationship = guarantor.Relationship,
                 Occupation = guarantor.Occupation,
                 Email = guarantor.Email,
-                Nationality = guarantor.Nationality
+                Nationality = guarantor.Nationality,
+                Address = guarantor.Address
             };
             return View(update);
         }

@@ -1,4 +1,4 @@
-﻿@model GuarantorDetailsViewModel 
+﻿@model AllModelsViewModel 
 
 @{ 
     ViewBag.Title = "Guarantor Details";
@@ -20,11 +20,11 @@
                         <a asp-controller="home" asp-action="index" class="list-group-item ">
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
                         </a>
-                        <a asp-action="studentdetails" asp-controller="home" class="list-group-item active main-color-bg">
+                        <a asp-action="studentdetails" asp-controller="home" class="list-group-item ">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true">
                             </span> Student <span class="badge">@_student.GetAllStudent().Count()</span>
                         </a>
-                        <a asp-action="" asp-controller="" class="list-group-item">
+                        <a asp-action="" asp-controller="" class="list-group-item active main-color-bg">
                             <span class="glyphicon glyphicon-tags" aria-hidden="true">
                             </span> Guarantor <span class="badge">@_guarantor.GetGuarantors().Count()</span>
                         </a>
@@ -59,23 +59,23 @@
                                     <th>Name</th>
                                     <th>Gender</th>
                                     <th>Nationality</th>
-                                    <th>Addmission Type</th>
-                                    <th>MaritalStatus</th>
-                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Occupation</th>
                                     <th></th>
                                 </tr>
-                                @foreach (var guarantor in Model.GetGuarantors)
+                                @foreach (var guarantor in Model.AllGuarantors)
                                 {
                                     <tr>
                                         <td>@guarantor.Name</td>
                                         <td>@guarantor.Gender</td>
                                         <td>@guarantor.Nationality</td>
                                         <td>@guarantor.Email</td>
-                                        <td>@guarantor.StudentGuarantors</td>
-                                        <td>@guarantor.Relationship</td>
+                                        <td>@guarantor.Address</td>
+                                        <td>@guarantor.Occupation</td>
                                         <td class="text-right ml-3">
                                             <a style="margin-right:20px" class="glyphicon glyphicon-eye-open" asp-controller="" asp-action="StudentInfo" asp-route-id="@guarantor.Id"></a>
-                                            <a style="margin-right:20px" class="glyphicon glyphicon-pencil" asp-controller="home" asp-action="edit" asp-route-id="@guarantor.Id"></a>
+                                            <a style="margin-right:20px" class="glyphicon glyphicon-pencil" asp-controller="guarantor" asp-action="editguarantor" asp-route-id="@guarantor.Id"></a>
                                         </td>
                                     </tr>
                                 }

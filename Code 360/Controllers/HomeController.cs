@@ -102,9 +102,9 @@ namespace Code_360.Controllers
         }
 
         [HttpGet]
-        public ViewResult Edit(Guid id)
+        public ViewResult Edit(Guid Id)
         {
-            Student student = _studentRepository.GetStudent(id);
+            Student student = _studentRepository.GetStudent(Id);
             UpdateStudent update = new UpdateStudent
             {
                 Id = student.Id,

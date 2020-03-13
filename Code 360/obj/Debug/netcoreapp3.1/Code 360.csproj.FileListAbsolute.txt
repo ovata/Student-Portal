@@ -80,3 +80,4 @@ C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netc
 C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.RazorTargetAssemblyInfo.cs
 C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.Views.pdb
 C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.csproj.CopyComplete
+C:\Users\SURFACE\Desktop\Project\Code_360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Razor\Views\Guarantor\EditGuarantor.cshtml.g.cs
